@@ -178,7 +178,7 @@ const SectionHeader = ({ title, icon: Icon }: { title: string; icon?: () => JSX.
 );
 
 const ExperienceItem = ({ title, company, years, bullets }: { title: string; company: string; years: string; bullets: string[] }) => (
-  <div className="mb-8 p-6 bg-gray-800 rounded-2xl shadow-lg border border-gray-700 hover:border-blue-400 transition-colors duration-300">
+  <div className="mb-8 p-6 bg-gray-800 border border-gray-700 hover:border-blue-400 transition-colors duration-300">
     <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
       <h3 className="text-xl font-semibold text-gray-200">{title}</h3>
       <span className="text-sm font-medium text-gray-400 bg-gray-700 px-3 py-1 rounded-full">
