@@ -250,12 +250,12 @@ export default function Home() {
         </header>
 
         <main className="space-y-16">
-          <section id="summary" className="p-6 bg-gray-800 rounded-3xl shadow-2xl border border-gray-700">
+          <section id="summary" className="p-6 bg-gray-800 border border-gray-700">
             <SectionHeader title="Summary" icon={FileTextIcon} />
             <p className="text-lg text-gray-300 leading-relaxed">{portfolioData.summary}</p>
           </section>
 
-          <section id="technical-expertise" className="p-6 bg-gray-800 rounded-3xl shadow-2xl border border-gray-700">
+          <section id="technical-expertise" className="p-6 bg-gray-800 border border-gray-700">
             <SectionHeader title="Technical Expertise" icon={LaptopIcon} />
             <div className="space-y-8">
               <div>
@@ -307,7 +307,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="work-experience" className="p-6 bg-gray-800 rounded-3xl shadow-2xl border border-gray-700">
+          <section id="work-experience" className="p-6 bg-gray-800 border border-gray-700">
             <SectionHeader title="Work Experience" icon={BuildingIcon} />
             <div className="space-y-8">
               {portfolioData.workExperience.map((job, index) => (
@@ -322,7 +322,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="education" className="p-6 bg-gray-800 rounded-3xl shadow-2xl border border-gray-700">
+          <section id="education" className="p-6 bg-gray-800 border border-gray-700">
             <SectionHeader title="Education" icon={GraduationCapIcon} />
             <div className="space-y-4 text-gray-300">
               {portfolioData.education.map((edu, index) => (
@@ -334,7 +334,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="certifications" className="p-6 bg-gray-800 rounded-3xl shadow-2xl border border-gray-700">
+          <section id="certifications" className="p-6 bg-gray-800 border border-gray-700">
             <SectionHeader title="Certifications" icon={AwardIcon} />
             <ul className="list-none space-y-3 text-gray-300">
               {portfolioData.certifications.map((cert, index) => (
