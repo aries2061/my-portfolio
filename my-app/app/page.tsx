@@ -11,7 +11,7 @@ import TextType from '@components/TextType';
 
 const portfolioData = {
   name: "Aung Thura",
-  title: "Full Stack Developer",
+  title: ["Senior IT Developer", "FrontEnd Developer", "BackEnd Developer" ,"Full Stack Developer", "Digital Solutions Specialist"],
   summary: "I am a Full Stack Developer with extensive experience in building scalable, high-quality web applications using modern JavaScript frameworks and technologies. With hands-on expertise in the MERN stack Node.js, Express.js, React/Next.js-and proficiency in MySQL and MongoDB, I have successfully developed and deployed CRM systems, learning platforms, and content management solutions. My background includes integrating RESTful APIs and microservices, deploying applications on AWS, Digital Ocean, and GCP, and implementing responsive frontends with HTML5, CSS3, Bootstrap, and Tailwind CSS. I bring strong problem-solving skills, a passion for clean and efficient code, and proven experience leading Agile teams to deliver impactful software solutions.",
   contact: {
     phone: "+66 814473616",
@@ -90,7 +90,7 @@ const portfolioData = {
   ]
 };
 
-const iconStyle = "w-6 h-6 text-blue-400";
+const iconStyle = "w-6 h-6 text-blue-600";
 const inlineSvgStyle = {
     fill: 'none',
     stroke: 'currentColor',
@@ -171,22 +171,27 @@ const AwardIcon = () => (
 );
 
 const SectionHeader = ({ title, icon: Icon }: { title: string; icon?: () => JSX.Element }) => (
-  <h2 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 mb-6 text-gray-100">
+  <h2 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 mb-6 text-gray-800">
     {Icon && <Icon />}
     {title}
   </h2>
 );
 
 const ExperienceItem = ({ title, company, years, bullets }: { title: string; company: string; years: string; bullets: string[] }) => (
-  <div className="mb-8 p-6 bg-gray-800 border border-gray-700 hover:border-blue-400 transition-colors duration-300">
+  <div className="mb-8 p-6 bg-white border border-gray-300 hover:border-blue-600 transition-colors duration-300">
     <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
-      <h3 className="text-xl font-semibold text-gray-200">{title}</h3>
-      <span className="text-sm font-medium text-gray-400 bg-gray-700 px-3 py-1 rounded-full">
-        {years}
+      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+      <span className={
+        `text-sm font-medium px-3 py-1 rounded-full 
+        ${years.includes('Present') ?
+         'bg-green-100 text-green-800' : 
+         'text-gray-600 bg-gray-200'}`}
+      >
+        {years} 
       </span>
     </div>
-    <p className="text-blue-400 font-medium mb-4">{company}</p>
-    <ul className="list-disc list-inside space-y-2 text-gray-300">
+    <p className="text-blue-600 font-medium mb-4">{company}</p>
+    <ul className="list-disc list-inside space-y-2 text-gray-700">
       {bullets.map((bullet, index) => (
         <li key={index} className="pl-2">{bullet}</li>
       ))}
@@ -195,7 +200,7 @@ const ExperienceItem = ({ title, company, years, bullets }: { title: string; com
 );
 
 const SkillPill = ({ skill }: { skill: string }) => (
-  <span className="bg-blue-900 text-blue-200 text-sm font-medium px-4 py-2 rounded-full border border-blue-700 hover:bg-blue-800 transition-colors duration-200">
+  <span className="bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full border border-blue-300 hover:bg-blue-200 transition-colors duration-200">
     {skill}
   </span>
 );
@@ -205,44 +210,46 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('summary');
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 font-sans p-4 sm:p-8 md:p-12">
+    <div className="min-h-screen bg-gray-100 text-gray-900 font-sans p-4 sm:p-8 md:p-12">
       <style jsx global>{`
         body {
           margin: 0;
           font-family: 'Inter', sans-serif;
-          background-color: #111827;
+          background-color: #f3f4f6;
         }
       `}</style>
       <div className="container mx-auto max-w-5xl">
         <header className="text-center py-12 px-4">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-blue-400 mb-2">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-blue-600 mb-2">
             <TextType 
               text={[portfolioData.name]}
               typingSpeed={75}
               pauseDuration={1500}
               showCursor={false}
               cursorCharacter="|"
+              textColors={['#0000ff']}
             />
           </h1>
-          <div className="text-xl sm:text-2xl font-light text-gray-300 mt-3">
+          <div className="text-xl sm:text-3xl font-light text-gray-700 mt-5">
             <TextType 
-              text={[portfolioData.title]}
-              typingSpeed={10}
+              text={portfolioData.title}
+              typingSpeed={60}
               pauseDuration={1500}
               showCursor={false}
               cursorCharacter="|"
+              textColors={['#0000ff']}
             />
           </div>
-          <div className="flex flex-wrap justify-center gap-4 mt-6 text-gray-300">
-            <a href={`tel:${portfolioData.contact.phone}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-200">
+          <div className="flex flex-wrap justify-center gap-4 mt-6 text-gray-600">
+            <a href={`tel:${portfolioData.contact.phone}`} className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-200">
               <PhoneIcon />
               <span className="hidden sm:inline">{portfolioData.contact.phone}</span>
             </a>
-            <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-200">
+            <a href={`mailto:${portfolioData.contact.email}`} className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-200">
               <MailIcon />
               <span className="hidden sm:inline">{portfolioData.contact.email}</span>
             </a>
-            <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-200">
+            <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-200">
               <LinkedinIcon />
               <span className="hidden sm:inline">LinkedIn Profile</span>
             </a>
@@ -250,16 +257,16 @@ export default function Home() {
         </header>
 
         <main className="space-y-16">
-          <section id="summary" className="p-6 bg-gray-800 border border-gray-700">
+          <section id="summary" className="p-6 bg-white border border-gray-300">
             <SectionHeader title="Summary" icon={FileTextIcon} />
-            <p className="text-lg text-gray-300 leading-relaxed">{portfolioData.summary}</p>
+            <p className="text-lg text-gray-700 leading-relaxed">{portfolioData.summary}</p>
           </section>
 
-          <section id="technical-expertise" className="p-6 bg-gray-800 border border-gray-700">
+          <section id="technical-expertise" className="p-6 bg-white border border-gray-300">
             <SectionHeader title="Technical Expertise" icon={LaptopIcon} />
             <div className="space-y-8">
               <div>
-                <h4 className="text-lg font-bold text-gray-200 mb-3">FrontEnd Development</h4>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">FrontEnd Development</h4>
                 <div className="flex flex-wrap gap-2">
                   {portfolioData.technicalExpertise.frontend.map((skill, index) => (
                     <SkillPill key={index} skill={skill} />
@@ -267,7 +274,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h4 className="text-lg font-bold text-gray-200 mb-3">BackEnd Development</h4>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">BackEnd Development</h4>
                 <div className="flex flex-wrap gap-2">
                   {portfolioData.technicalExpertise.backend.map((skill, index) => (
                     <SkillPill key={index} skill={skill} />
@@ -275,7 +282,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h4 className="text-lg font-bold text-gray-200 mb-3">Databases</h4>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">Databases</h4>
                 <div className="flex flex-wrap gap-2">
                   {portfolioData.technicalExpertise.databases.map((skill, index) => (
                     <SkillPill key={index} skill={skill} />
@@ -283,7 +290,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h4 className="text-lg font-bold text-gray-200 mb-3">Cloud & DevOps</h4>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">Cloud & DevOps</h4>
                 <div className="flex flex-wrap gap-2">
                   {portfolioData.technicalExpertise.cloud.map((skill, index) => (
                     <SkillPill key={index} skill={skill} />
@@ -291,7 +298,7 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <h4 className="text-lg font-bold text-gray-200 mb-3">Other Tools</h4>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">Other Tools</h4>
                 <div className="flex flex-wrap gap-2">
                   {portfolioData.technicalExpertise.mobile.map((skill, index) => (
                     <SkillPill key={index} skill={skill} />
@@ -307,7 +314,7 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="work-experience" className="p-6 bg-gray-800 border border-gray-700">
+          <section id="work-experience" className="p-6 bg-white border border-gray-300">
             <SectionHeader title="Work Experience" icon={BuildingIcon} />
             <div className="space-y-8">
               {portfolioData.workExperience.map((job, index) => (
@@ -322,24 +329,24 @@ export default function Home() {
             </div>
           </section>
 
-          <section id="education" className="p-6 bg-gray-800 border border-gray-700">
+          <section id="education" className="p-6 bg-white border border-gray-300">
             <SectionHeader title="Education" icon={GraduationCapIcon} />
-            <div className="space-y-4 text-gray-300">
+            <div className="space-y-4 text-gray-700">
               {portfolioData.education.map((edu, index) => (
                 <div key={index} className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-                  <h4 className="text-lg font-semibold text-gray-200">{edu.degree}</h4>
-                  <p className="text-sm sm:text-base font-medium text-gray-400">{edu.school}</p>
+                  <h4 className="text-lg font-semibold text-gray-800">{edu.degree}</h4>
+                  <p className="text-sm sm:text-base font-medium text-gray-600">{edu.school}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          <section id="certifications" className="p-6 bg-gray-800 border border-gray-700">
+          <section id="certifications" className="p-6 bg-white border border-gray-300">
             <SectionHeader title="Certifications" icon={AwardIcon} />
-            <ul className="list-none space-y-3 text-gray-300">
+            <ul className="list-none space-y-3 text-gray-700">
               {portfolioData.certifications.map((cert, index) => (
                 <li key={index} className="flex items-center gap-2">
-                  <span className="text-blue-400 text-xl">•</span>
+                  <span className="text-blue-600 text-xl">•</span>
                   {cert}
                 </li>
               ))}
