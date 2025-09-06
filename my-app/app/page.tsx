@@ -2,6 +2,7 @@
 import Image from "next/image";
 
 import React, { useState, useEffect, JSX } from 'react';
+import TextType from '@components/TextType';
 
 // This is a single-file Next.js application that renders a portfolio
 // based on the provided resume content.
@@ -215,11 +216,23 @@ export default function Home() {
       <div className="container mx-auto max-w-5xl">
         <header className="text-center py-12 px-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-blue-400 mb-2">
-            {portfolioData.name}
+            <TextType 
+              text={[portfolioData.name]}
+              typingSpeed={75}
+              pauseDuration={1500}
+              showCursor={false}
+              cursorCharacter="|"
+            />
           </h1>
-          <p className="text-xl sm:text-2xl font-light text-gray-300">
-            {portfolioData.title}
-          </p>
+          <div className="text-xl sm:text-2xl font-light text-gray-300 mt-3">
+            <TextType 
+              text={[portfolioData.title]}
+              typingSpeed={10}
+              pauseDuration={1500}
+              showCursor={false}
+              cursorCharacter="|"
+            />
+          </div>
           <div className="flex flex-wrap justify-center gap-4 mt-6 text-gray-300">
             <a href={`tel:${portfolioData.contact.phone}`} className="flex items-center gap-2 hover:text-blue-400 transition-colors duration-200">
               <PhoneIcon />
