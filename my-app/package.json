@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "daisyui": "^5.1.7",
     "gsap": "^3.13.0",
     "next": "15.5.2",
     "react": "19.1.0",
