@@ -1,295 +1,542 @@
-"use client";
+import Image from "next/image";
 
-import { useState } from "react";
-import "./globals.css";
-
-const skills = [
-  "PHP", "Laravel", ".NET Core", "Python", "TypeScript", "React",
-  "React Native", "Node.js", "Next.js", "Express.js", "Tailwind CSS",
-  "Bootstrap", "MySQL", "MongoDB", "GraphQL", "Git", "Bitbucket",
-  "JIRA", "Moodle", "AWS", "DigitalOcean", "Google Cloud Platform", "Linux"
+const expertise = [
+  [
+    "window",
+    "Frontend",
+    "Clear interfaces. Thoughtful experiences.",
+    "React · Next.js · TypeScript · Tailwind CSS · Bootstrap",
+  ],
+  [
+    "database",
+    "Backend",
+    "Reliable logic behind every interaction.",
+    "PHP · Laravel · .NET Core · Node.js · Express.js",
+  ],
+  [
+    "phone",
+    "Mobile",
+    "Practical software for the real world.",
+    "React Native · Android · Offline-first sync",
+  ],
+  [
+    "cloud",
+    "Cloud & Data",
+    "From structured data to production.",
+    "AWS · DigitalOcean · GCP · Linux · MySQL · MongoDB · REST · GraphQL",
+  ],
 ];
-
-const navItems = [
-  ["about", "About"],
-  ["skills", "Skills"],
-  ["experience", "Experience"],
-  ["impact", "Impact"],
-  ["contact", "Contact"],
-];
-
-function Icon({ children }) {
-  return <span className="icon" aria-hidden="true">{children}</span>;
+function Arrow() {
+  return <span aria-hidden="true">↗</span>;
 }
-
-export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const closeMenu = () => setMenuOpen(false);
-
+function Icon({ name }) {
+  const paths = {
+    window: (
+      <>
+        <rect x="3" y="4" width="26" height="23" rx="2" />
+        <path d="M3 10h26M8 7h1m3 0h1" />
+      </>
+    ),
+    database: (
+      <>
+        <ellipse cx="16" cy="7" rx="11" ry="4" />
+        <path d="M5 7v17c0 6 22 6 22 0V7M5 15c0 6 22 6 22 0" />
+      </>
+    ),
+    phone: (
+      <>
+        <rect x="8" y="2" width="16" height="28" rx="3" />
+        <path d="M13 6h6m-4 20h2" />
+      </>
+    ),
+    cloud: (
+      <path d="M9 25h15a6 6 0 0 0 1-12 9 9 0 0 0-17-3 7.5 7.5 0 0 0 1 15Z" />
+    ),
+  };
   return (
-    <main>
-      <header className="site-header">
-        <a className="brand" href="#top" onClick={closeMenu}>
-          <span className="brand-mark">AT</span>
-          <span>AUNG THURA</span>
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      aria-hidden="true"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
+function CrmPreview() {
+  return (
+    <div className="crm-preview" aria-hidden="true">
+      <aside className="crm-sidebar">
+        <b>AT / CRM</b>
+        {["Overview", "Contacts", "Workflows", "Reports", "Settings"].map(
+          (item, i) => (
+            <span key={item} className={i === 0 ? "selected" : ""}>
+              {item}
+            </span>
+          ),
+        )}
+        <small>WORK, CONNECTED.</small>
+      </aside>
+      <div className="crm-main">
+        <div className="crm-top">
+          <span>Workspace / Overview</span>
+          <span className="avatar">AT</span>
+        </div>
+        <h4>A clearer view of your work.</h4>
+        <p>Your people, processes, and progress. Together.</p>
+        <div className="crm-metrics">
+          <div>
+            <small>WORKFLOWS</small>
+            <b>Connected</b>
+            <span>One shared workspace</span>
+          </div>
+          <div>
+            <small>OPERATIONS</small>
+            <b>Simplified</b>
+            <span>Built around your team</span>
+          </div>
+        </div>
+        <div className="chart">
+          <div>
+            <b>Workflow activity</b>
+            <span>Illustrative data</span>
+          </div>
+          <svg viewBox="0 0 500 160" fill="none">
+            <defs>
+              <linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop stopColor="#1251d8" stopOpacity=".18" />
+                <stop offset="1" stopColor="#1251d8" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0 40H500M0 80H500M0 120H500" stroke="#e8edf6" />
+            <path
+              d="M0 140 50 120 100 125 150 85 200 100 250 58 300 65 350 30 400 45 450 15 500 5V160H0Z"
+              fill="url(#chart-fill)"
+            />
+            <path
+              d="M0 140 50 120 100 125 150 85 200 100 250 58 300 65 350 30 400 45 450 15 500 5"
+              stroke="#124bda"
+              strokeWidth="3"
+            />
+          </svg>
+          <div className="chart-months">
+            <span>Jan</span>
+            <span>Feb</span>
+            <span>Mar</span>
+            <span>Apr</span>
+            <span>May</span>
+            <span>Jun</span>
+          </div>
+        </div>
+        <div className="crm-bottom">
+          <span>
+            <i /> Teams in sync
+          </span>
+          <span>Less friction. More focus.</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+function MobilePreview() {
+  return (
+    <div className="mobile-preview" aria-hidden="true">
+      <div className="preview-copy">
+        Work anywhere.
+        <br />
+        Keep moving
+        <br />
+        forward.<span>DESIGNED FOR THE FIELD</span>
+      </div>
+      <div className="phone">
+        <div className="phone-notch" />
+        <div className="phone-status">
+          9:41 <span>••• ▰</span>
+        </div>
+        <b>Fieldwork</b>
+        <p>Your work travels with you.</p>
+        <div className="sync">
+          <i /> Ready to work offline
+        </div>
+        {[
+          "Capture field data",
+          "View saved records",
+          "Sync when connected",
+        ].map((t, i) => (
+          <div className="phone-row" key={t}>
+            <span>{["＋", "▤", "↻"][i]}</span>
+            {t}
+          </div>
+        ))}
+        <div className="phone-bottom">
+          Home <span>Records</span> Profile
+        </div>
+      </div>
+    </div>
+  );
+}
+function ApiPreview() {
+  return (
+    <div className="api-preview" aria-hidden="true">
+      <div className="preview-copy">
+        Secure.
+        <br />
+        Scalable.
+        <br />
+        Built to connect.
+      </div>
+      <div className="api-diagram">
+        <div className="cloud-node">
+          <Icon name="cloud" />
+          <span>CLOUD</span>
+        </div>
+        <div className="connector" />
+        <div className="api-nodes">
+          <span>WEB</span>
+          <b>API</b>
+          <span>DATA</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+function ProjectDetails({ children }) {
+  return (
+    <details className="project-details">
+      <summary>
+        Behind the project <span aria-hidden="true">＋</span>
+      </summary>
+      <div>{children}</div>
+    </details>
+  );
+}
+export default function Home() {
+  return (
+    <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <header className="site-header shell">
+        <a className="brand" href="#top" aria-label="Aung Thura, home">
+          <strong>AT</strong>
+          <span>Aung Thura</span>
         </a>
-
-        <button
-          className="menu-btn"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav className={menuOpen ? "nav open" : "nav"}>
-          {navItems.map(([id, label]) => (
-            <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>
-          ))}
-          <a className="nav-cta" href="mailto:aungthura.bece@gmail.com" onClick={closeMenu}>
-            Let&apos;s Talk
+        <nav aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">
+            Contact <Arrow />
           </a>
         </nav>
       </header>
-
-      <section className="hero section-shell" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow">FULLSTACK DEVELOPER <span>|</span> DIGITAL SOLUTIONS SPECIALIST</p>
-          <h1>Hi, I&apos;m <span>Aung Thura</span>.</h1>
-          <h2>Building practical digital solutions that create measurable impact.</h2>
-          <p className="hero-text">
-            Results-driven software developer experienced in full-stack development,
-            mobile applications, API integration, automation, and cloud deployment.
-            I build scalable solutions that improve operations, digital access, and user experience.
-          </p>
-
-          <div className="hero-actions">
-            <a className="btn primary" href="#impact">View My Work <span>→</span></a>
-            <a className="btn secondary" href="/AungThura_FullStack_CV.pdf" download>
-              Download CV <span>↓</span>
+      <main id="main" className="shell">
+        <section className="hero" id="top">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              <span className="location-dot" /> FULLSTACK DEVELOPER · BANGKOK,
+              THAILAND
+            </p>
+            <h1>
+              Digital products.
+              <br />
+              Built with purpose.
+            </h1>
+            <p className="hero-intro">
+              I’m Aung Thura. I build reliable web, mobile,
+              <br className="desktop-break" /> and cloud solutions that make
+              work simpler.
+            </p>
+            <div className="actions">
+              <a className="button primary" href="#work">
+                View selected work <span aria-hidden="true">→</span>
+              </a>
+              <a
+                className="cv-link"
+                href="/AungThura_FullStack_CV.pdf"
+                download
+              >
+                Download CV <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+          <div className="hero-art">
+            <Image
+              src="/images/concept1-sculpture.png"
+              alt=""
+              fill
+              sizes="(max-width: 700px) 100vw, 42vw"
+              priority
+            />
+            <span className="art-note">
+              IDEAS.
+              <br />
+              SYSTEMS.
+              <br />
+              PEOPLE.
+            </span>
+            <span className="art-caption">
+              A LITTLE STRUCTURE. A LOT OF POSSIBILITY.
+            </span>
+          </div>
+        </section>
+        <section className="stats" aria-label="Career highlights">
+          {[
+            ["6+", "Years of experience"],
+            ["50%", "Faster CRM workflows"],
+            ["40%", "Lower platform costs"],
+            ["10k+", "Daily API requests"],
+          ].map(([value, label]) => (
+            <div key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </div>
+          ))}
+        </section>
+        <section className="work-section" id="work">
+          <span id="impact" className="anchor-alias" />
+          <div className="section-heading">
+            <h2 className="eyebrow">SELECTED WORK</h2>
+            <p>Real problems. Practical solutions.</p>
+          </div>
+          <div className="project-grid">
+            <article className="project featured">
+              <div className="project-visual">
+                <CrmPreview />
+              </div>
+              <div className="project-title">
+                <h3>Custom CRM Platform</h3>
+                <span className="project-number">01 /</span>
+              </div>
+              <p className="project-tech">Next.js / MySQL / Bootstrap</p>
+              <p className="project-description">
+                One purpose-built workspace. 50% faster workflows.
+                <br />
+                40% lower third-party platform costs.
+              </p>
+              <ProjectDetails>
+                <p>
+                  At Proximity Designs, I architected a custom CRM around
+                  internal operational needs, bringing workflows into a shared
+                  Next.js and MySQL application.
+                </p>
+                <p>
+                  <strong>My role:</strong> Architecture and full-stack
+                  development.
+                </p>
+              </ProjectDetails>
+            </article>
+            <div className="secondary-projects">
+              <article className="project">
+                <div className="project-visual">
+                  <MobilePreview />
+                </div>
+                <div className="project-title">
+                  <h3>Offline-first Field App</h3>
+                  <span className="project-number">02 /</span>
+                </div>
+                <p className="project-tech">
+                  React Native / Android / Offline sync
+                </p>
+                <ProjectDetails>
+                  <p>
+                    Built an offline-first Android application for Proximity
+                    Designs’ rural field teams, with automated synchronization
+                    when connectivity returns.
+                  </p>
+                  <p>
+                    <strong>My role:</strong> Mobile development and data
+                    synchronization.
+                  </p>
+                </ProjectDetails>
+              </article>
+              <article className="project">
+                <div className="project-visual">
+                  <ApiPreview />
+                </div>
+                <div className="project-title">
+                  <h3>Secure API Infrastructure</h3>
+                  <span className="project-number">03 /</span>
+                </div>
+                <p className="project-tech">.NET Core / MySQL / AWS</p>
+                <ProjectDetails>
+                  <p>
+                    Engineered secure REST APIs handling more than 10,000 daily
+                    requests, with applications deployed and maintained across
+                    AWS and DigitalOcean.
+                  </p>
+                  <p>
+                    <strong>My role:</strong> Backend development and cloud
+                    deployment.
+                  </p>
+                </ProjectDetails>
+              </article>
+            </div>
+          </div>
+          <div className="work-footnote">
+            <span>Interface and architecture previews are illustrative.</span>
+            <a href="#learning">
+              Also built: offline learning infrastructure{" "}
+              <span aria-hidden="true">↓</span>
             </a>
           </div>
-
-          <div className="hero-contact">
-            <a href="mailto:aungthura.bece@gmail.com">✉ aungthura.bece@gmail.com</a>
-            <a href="tel:+66814473616">☎ +66 814473616</a>
-            <span>● Huai Khwang, Bangkok, Thailand</span>
+        </section>
+        <section className="expertise-section" id="skills">
+          <div className="section-heading">
+            <h2 className="eyebrow">EXPERTISE</h2>
+            <p>From interface to infrastructure.</p>
           </div>
-
-          <div className="social-row">
-            <a href="https://www.linkedin.com/in/aung-thura-atr" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
-            <a href="https://wa.me/+66814473616" target="_blank" rel="noreferrer" aria-label="WhatsApp">WA</a>
+          <div className="expertise-grid">
+            {expertise.map(([icon, title, desc, tech]) => (
+              <article key={title}>
+                <Icon name={icon} />
+                <h3>{title}</h3>
+                <p>{desc}</p>
+                <small>{tech}</small>
+              </article>
+            ))}
           </div>
-        </div>
-
-        <div className="hero-photo-wrap">
-          <div className="photo-badge">Bangkok, Thailand</div>
-          {/* Professional headshot of Aung Thura. */}
-          <img
-            src="/headshot-placeholder.png"
-            alt="Professional headshot of Aung Thura"
-            className="hero-photo"
-          />
-          <div className="photo-card">
-            <strong>Fullstack Developer</strong>
-            <span>Web • Mobile • API • Cloud</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="stats section-shell" aria-label="Career highlights">
-        <article><strong>50%</strong><span>Faster workflows</span><small>with custom CRM</small></article>
-        <article><strong>40%</strong><span>Cost reduction</span><small>vs. third-party platforms</small></article>
-        <article><strong>10K+</strong><span>Daily API requests</span><small>handled reliably</small></article>
-        <article><strong>2019+</strong><span>Professional journey</span><small>software & digital solutions</small></article>
-      </section>
-
-      <section className="section section-shell split" id="about">
-        <div>
-          <p className="section-kicker">ABOUT ME</p>
-          <h2 className="section-title">I build technology around real operational needs.</h2>
-          <p className="body-copy">
-            My work spans custom CRM systems, cross-platform mobile applications, RESTful APIs,
-            learning platforms, automation tools, and cloud deployment. I have also led Agile teams,
-            mentored junior developers, and delivered systems for low-connectivity and remote environments.
-          </p>
-          <a href="#contact" className="text-link">Get in touch →</a>
-        </div>
-
-        <div className="strength-list">
-          <article>
-            <Icon>⌘</Icon>
-            <div><strong>Full-Stack Development</strong><span>Web, mobile, backend APIs and integrations</span></div>
-          </article>
-          <article>
-            <Icon>☁</Icon>
-            <div><strong>Cloud & DevOps</strong><span>AWS, DigitalOcean, GCP and Linux environments</span></div>
-          </article>
-          <article>
-            <Icon>◎</Icon>
-            <div><strong>Team Leadership</strong><span>Agile delivery, mentoring and technical guidance</span></div>
-          </article>
-          <article>
-            <Icon>⚙</Icon>
-            <div><strong>Problem Solving</strong><span>Turning business needs into maintainable systems</span></div>
-          </article>
-        </div>
-      </section>
-
-      <section className="section alt" id="skills">
-        <div className="section-shell">
-          <p className="section-kicker">TECHNICAL EXPERTISE</p>
-          <div className="section-heading-row">
-            <h2 className="section-title">Technologies I Work With</h2>
-            <span>Always learning. Always building.</span>
-          </div>
-          <div className="skill-cloud">
-            {skills.map((skill) => <span key={skill}>{skill}</span>)}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-shell" id="experience">
-        <p className="section-kicker">PROFESSIONAL EXPERIENCE</p>
-        <div className="section-heading-row">
-          <h2 className="section-title">My Career Journey</h2>
-          <span>Building. Learning. Growing.</span>
-        </div>
-
-        <div className="timeline">
-          <article className="timeline-item">
-            <div className="timeline-date">2024 — Present</div>
-            <div className="timeline-dot"></div>
-            <div className="timeline-card">
-              <h3>Digital Solutions Specialist</h3>
-              <h4>PROXIMITY DESIGNS — Yangon, Myanmar</h4>
-              <ul>
-                <li>Architected and delivered a custom CRM using Next.js, MySQL and Bootstrap, accelerating workflows by 50% and reducing third-party platform costs by 40%.</li>
-                <li>Engineered scalable, secure RESTful APIs using .NET and MySQL, handling 10K+ daily requests.</li>
-                <li>Built an offline-first React Native Android application with automated data synchronization for rural teams.</li>
-                <li>Deployed and maintained web applications across AWS and DigitalOcean.</li>
-                <li>Developed Python automation and integration tools for the Data Management team.</li>
-              </ul>
-            </div>
-          </article>
-
-          <article className="timeline-item">
-            <div className="timeline-date">2019 — 2024</div>
-            <div className="timeline-dot"></div>
-            <div className="timeline-card">
-              <h3>Senior IT Developer</h3>
-              <h4>ZABAI — Yangon, Myanmar</h4>
-              <ul>
-                <li>Architected and customized Moodle-based LMS platforms with proprietary features that improved user retention and supported new client acquisition.</li>
-                <li>Developed RESTful APIs using PHP for Android and iOS applications.</li>
-                <li>Led development teams through the SDLC using Agile Scrum methodologies.</li>
-                <li>Mentored junior developers and interns to improve onboarding and code quality.</li>
-                <li>Designed offline-capable e-learning infrastructure for air-gapped and remote environments.</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="section alt" id="impact">
-        <div className="section-shell">
-          <p className="section-kicker">SELECTED IMPACT</p>
-          <div className="section-heading-row">
-            <h2 className="section-title">Solutions That Delivered Results</h2>
-            <span>Technology for people, not just code.</span>
-          </div>
-
-          <div className="project-grid">
-            <article>
-              <span className="project-no">01</span>
-              <h3>Custom CRM Platform</h3>
-              <p>Next.js, MySQL and Bootstrap application that accelerated organizational workflows by 50% while reducing third-party platform costs by 40%.</p>
-              <div className="tags"><span>Next.js</span><span>MySQL</span><span>Bootstrap</span></div>
-            </article>
-            <article>
-              <span className="project-no">02</span>
-              <h3>Offline-First Mobile App</h3>
-              <p>React Native Android application designed for internal teams operating in low-connectivity rural areas, with automated synchronization.</p>
-              <div className="tags"><span>React Native</span><span>Offline-first</span><span>Sync</span></div>
-            </article>
-            <article>
-              <span className="project-no">03</span>
-              <h3>Scalable REST APIs</h3>
-              <p>Secure .NET and MySQL APIs supporting web and mobile applications while handling more than 10,000 requests per day.</p>
-              <div className="tags"><span>.NET</span><span>MySQL</span><span>REST</span></div>
-            </article>
-            <article>
-              <span className="project-no">04</span>
-              <h3>Offline Learning Infrastructure</h3>
-              <p>Localized Moodle and progressive web solutions deployed on lightweight physical infrastructure for air-gapped and remote environments.</p>
-              <div className="tags"><span>Moodle</span><span>PWA</span><span>Linux</span></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-shell credentials">
-        <article>
-          <p className="section-kicker">EDUCATION</p>
-          <h3>Bachelor of Engineering<br />(Computer Engineering)</h3>
-          <p>University of Technology<br />(Yatanarpon Cyber City)</p>
-          <p>Pyin Oo Lwin, Myanmar</p>
-          <strong>2019 • GPA 4.33/5.0</strong>
-        </article>
-
-        <article>
-          <p className="section-kicker">CERTIFICATIONS</p>
-          <ul className="check-list">
-            <li>AWS Certified Solutions Architect – Associate</li>
-            <li>AWS Cloud Technical Essentials</li>
-            <li>MongoDB Node.js Developer Path</li>
-            <li>Scrum Certification for Web Developer</li>
-          </ul>
-        </article>
-
-        <article>
-          <p className="section-kicker">LANGUAGES</p>
-          <div className="language">
-            <strong>English</strong><span>Working Proficiency</span><div><i style={{width:"78%"}}></i></div>
-          </div>
-          <div className="language">
-            <strong>Burmese</strong><span>Native</span><div><i style={{width:"100%"}}></i></div>
-          </div>
-        </article>
-      </section>
-
-      <section className="contact section-shell" id="contact">
-        <div>
-          <p className="section-kicker">GET IN TOUCH</p>
-          <h2>Let&apos;s Build Something Together</h2>
-          <p>I&apos;m open to discussing software opportunities, useful products, and digital solutions that create meaningful impact.</p>
-        </div>
-        <div className="contact-list">
-          <a href="mailto:aungthura.bece@gmail.com">✉ aungthura.bece@gmail.com</a>
-          <a href="tel:+66814473616">☎ +66 814473616</a>
-          <span>● Huai Khwang, Bangkok, Thailand</span>
-          <div className="contact-socials">
-            <a href="https://www.linkedin.com/in/aung-thura-atr" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="https://wa.me/+66814473616" target="_blank" rel="noreferrer">WhatsApp</a>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <div className="section-shell footer-inner">
+        </section>
+        <section className="about-section" id="about">
           <div>
-            <strong className="footer-brand">AT <span>AUNG THURA</span></strong>
-            <p>Fullstack Developer | Digital Solutions Specialist</p>
-            <p>Building technology for practical impact.</p>
+            <p className="eyebrow">A LITTLE ABOUT ME</p>
+            <h2>
+              Technology built around
+              <br />
+              real operational needs.
+            </h2>
           </div>
-          <div className="footer-nav">
-            {navItems.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}
+          <div>
+            <p>
+              I’m a fullstack developer and digital solutions specialist based
+              in Bangkok. My work spans enterprise operations, mobile field
+              tools, and learning platforms for remote communities.
+            </p>
+            <p>
+              I care about maintainable systems, clear interfaces, and making
+              technology useful where it matters. Alongside development, I lead
+              Agile delivery, mentor developers, and build automation with
+              Python.
+            </p>
+            <p className="tool-note">
+              Everyday tools: Git, Bitbucket, JIRA & Agile Scrum.
+            </p>
           </div>
-          <small>© {new Date().getFullYear()} Aung Thura. All rights reserved.</small>
-        </div>
+        </section>
+        <section className="experience-section" id="experience">
+          <div className="section-heading">
+            <h2 className="eyebrow">EXPERIENCE</h2>
+            <a href="/AungThura_FullStack_CV.pdf" download>
+              Full résumé <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+          <article className="experience-row">
+            <h3>Proximity Designs</h3>
+            <div>
+              <strong>Digital Solutions Specialist</strong>
+              <p>
+                Custom CRM, offline mobile applications, secure APIs, cloud
+                deployment, and data automation.
+              </p>
+            </div>
+            <span>2024 — Present</span>
+          </article>
+          <article className="experience-row" id="learning">
+            <h3>Zabai</h3>
+            <div>
+              <strong>Senior IT Developer</strong>
+              <p>
+                Customized Moodle learning platforms and PHP APIs. Designed
+                offline learning infrastructure for air-gapped environments, led
+                Agile delivery, and mentored developers.
+              </p>
+            </div>
+            <span>2019 — 2024</span>
+          </article>
+        </section>
+        <section className="credentials" aria-label="Education and credentials">
+          <div>
+            <h2 className="eyebrow">EDUCATION</h2>
+            <h3>B.E. Computer Engineering</h3>
+            <p>
+              University of Technology
+              <br />
+              (Yatanarpon Cyber City)
+            </p>
+            <small>2019 · GPA 4.33 / 5.0</small>
+          </div>
+          <div>
+            <h2 className="eyebrow">CERTIFICATIONS</h2>
+            <ul>
+              <li>AWS Certified Solutions Architect – Associate</li>
+              <li>AWS Cloud Technical Essentials</li>
+              <li>MongoDB Node.js Developer Path</li>
+              <li>Scrum Certification for Web Developer</li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="eyebrow">LANGUAGES</h2>
+            <p>
+              English <span>Working proficiency</span>
+            </p>
+            <p>
+              Burmese <span>Native</span>
+            </p>
+          </div>
+        </section>
+        <section className="contact" id="contact">
+          <h2>
+            Have a useful
+            <br />
+            problem to solve?
+          </h2>
+          <div className="contact-main">
+            <p>
+              Let’s build something that makes
+              <br />a real difference.
+            </p>
+            <div className="actions">
+              <a
+                className="button primary"
+                href="mailto:aungthura.bece@gmail.com"
+              >
+                Email me <Arrow />
+              </a>
+              <a
+                className="button secondary"
+                href="https://www.linkedin.com/in/aung-thura-atr"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn <Arrow />
+              </a>
+            </div>
+            <a className="contact-email" href="mailto:aungthura.bece@gmail.com">
+              aungthura.bece@gmail.com
+            </a>
+          </div>
+          <div className="contact-meta">
+            <p className="eyebrow">BANGKOK, THAILAND</p>
+            <a href="tel:+66814473616">+66 814473616</a>
+            <a
+              href="https://wa.me/66814473616"
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp <Arrow />
+            </a>
+          </div>
+        </section>
+      </main>
+      <footer className="shell">
+        <span>© {new Date().getFullYear()} Aung Thura.</span>
+        <span>Build thoughtfully. Make it useful.</span>
+        <a href="#top">Back to top ↑</a>
       </footer>
-    </main>
+    </>
   );
 }
