@@ -1,6 +1,8 @@
 # Aung Thura Portfolio
 
-A responsive one-page portfolio built with Next.js 14.
+A responsive one-page portfolio built with Next.js 16 and React 19.
+
+Requires Node.js 20.9 or newer.
 
 ## Run locally
 
